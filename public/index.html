@@ -1,0 +1,30 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Простой чат на JS</title>
+  <!-- Подключаем стили -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- ВАЖНО: Подключаем клиентскую библиотеку Socket.IO -->
+  <!-- Она автоматически загрузится с нашего сервера по адресу /socket.io/socket.io.js -->
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="chat-container">
+    <h1>Чат</h1>
+
+    <!-- Список сообщений -->
+    <div id="messages" class="messages"></div>
+
+    <!-- Форма отправки -->
+    <form id="chat-form">
+      <input type="text" id="message-input" placeholder="Введите сообщение..." autocomplete="off" />
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+
+  <!-- Подключаем наш скрипт логики -->
+  <script src="script.js"></script>
+</body>
+</html>
