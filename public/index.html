@@ -1,30 +1,63 @@
+
 <!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Простой чат на JS</title>
-  <!-- Подключаем стили -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- ВАЖНО: Подключаем клиентскую библиотеку Socket.IO -->
-  <!-- Она автоматически загрузится с нашего сервера по адресу /socket.io/socket.io.js -->
+  <meta charset="UTF-8">
+
+  <!-- ========================================================================== -->
+  <!-- КРИТИЧЕСКИ ВАЖНО ДЛЯ ТЕЛЕФОНОВ: Адаптивность экрана -->
+  <!-- Эта строка говорит браузеру: "Не уменьшай страницу, а подстраивай её под ширину телефона" -->
+  <!-- Без неё на телефоне чат будет мелким, и придётся приближать пальцами. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ========================================================================== -->
+
+  <title>Чат на Socket.IO</title>
+
+  <!-- Подключаем стили (наш CSS файл) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ========================================================================== -->
+  <!-- ПОДКЛЮЧЕНИЕ SOCKET.IO КЛИЕНТА -->
+  <!-- Важно: мы НЕ указываем путь к файлу явно. -->
+  <!-- Express автоматически отдаёт этот файл по адресу /socket.io/socket.io.js -->
+  <!-- Если ты укажешь путь неправильно, чат не подключится. -->
   <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
+
   <div class="chat-container">
-    <h1>Чат</h1>
+    <h1>💬 Мой Чат</h1>
 
-    <!-- Список сообщений -->
-    <div id="messages" class="messages"></div>
+    <!-- Область для сообщений -->
+    <div id="messages" class="messages">
+      <!-- Сюда JavaScript будет добавлять новые сообщения -->
+      <div class="message system-msg">Загрузка чата...</div>
+    </div>
 
-    <!-- Форма отправки -->
+    <!-- Форма отправки сообщения -->
     <form id="chat-form">
-      <input type="text" id="message-input" placeholder="Введите сообщение..." autocomplete="off" />
-      <button type="submit">Отправить</button>
+      <!-- Поле ввода -->
+      <input
+        type="text"
+        id="message-input"
+        placeholder="Введите сообщение..."
+        autocomplete="off"
+        required
+        maxlength="200"
+      >
+      <!-- Кнопка отправки -->
+      <button type="submit">➤ Отправить</button>
     </form>
+
+    <!-- Блок для отображения ошибок соединения (скрыт по умолчанию) -->
+    <!-- Он появится, если телефон не сможет соединиться с сервером -->
+    <div id="connection-status" class="status-bar">
+      🔴 Ошибка соединения. Проверьте интернет или статус сервера.
+    </div>
   </div>
 
-  <!-- Подключаем наш скрипт логики -->
+  <!-- Наш собственный скрипт логики -->
   <script src="script.js"></script>
 </body>
 </html>
