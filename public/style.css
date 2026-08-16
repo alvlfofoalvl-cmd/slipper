@@ -57,3 +57,15 @@ button {
 button:hover {
   background: #0056b3;
 }
+
+.status-bar {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ffebeb;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  display: none; /* Скрыт по умолчанию */
+}
